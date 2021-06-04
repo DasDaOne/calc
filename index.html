@@ -1,0 +1,102 @@
+<head>
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="main.css" rel="stylesheet">
+</head>
+<body class="bg-light bg-gradient text-white">
+
+<div class="row w-50 mx-auto">
+    <div class="col-md-12 mx-auto d-inline-flex p-5 mt-5 rounded bg-secondary bg-gradient">
+        <div class="calculator">
+            <div class="row">
+                <h2 class="col-12 text-center">Калькулятор аннуитетных платежей по кредиту</h2>
+
+                <div class="col-6">
+                    <label for="amount" class="form-label">Сумма кредита</label>
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" id="amount">
+                        <span class="input-group-text">₽</span>
+                    </div>
+
+                    <label for="time" class="form-label">Срок погашения в месяцах</label>
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" id="time">
+                    </div>
+
+
+                    <label for="percentage" class="form-label">Кредитная ставка</label>
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" id="percentage">
+                        <span class="input-group-text">%</span>
+                    </div>
+
+                    <button type="button" class="btn btn-light" id="calc" onclick="calc()">Рассчитать</button>
+                </div>
+                <div class="col-6">
+                    <label for="sum-progress-bar-1" class="form-label">Сумма выплат составит</label>
+                    <div class="progress mb-3" style="height: 2.4rem; background: whitesmoke">
+                        <div id="sum-progress-bar-1" class="progress-bar text-dark" role="progressbar" style="width: 100%; background: whitesmoke" aria-valuenow="46" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div id="sum-progress-bar-2" class="progress-bar text-dark" role="progressbar" style="width: 0%; background: gold" aria-valuenow="46" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+
+                    <div class="p-1 d-flex align-middle p-0">
+                        <i class="bi-circle-fill my-auto" style="font-size: 1rem; color: whitesmoke;"></i>
+                        <p id="loan amount" class="fs-5 my-auto ms-2">Сумма кредита</p>
+                    </div>
+
+                    <div class="p-1 d-flex align-middle p-0">
+                        <i class="bi-circle-fill my-auto" style="font-size: 1rem; color: gold;"></i>
+                        <p id="overprice" class="fs-5 my-auto ms-2">Общая переплата</p>
+                    </div>
+
+                    <div class="p-1 d-flex align-middle p-0">
+                        <img src="assets/symbol.png" class="ms-0 my-auto" style="width: 16px; height: 16px">
+                        <p id="sum" class="fs-5 my-auto ms-2">Общая сумма выплат</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <label class="form-label" for="percentage2">Ставка по кредиту</label>
+                            <h1 style="color: gold"><b id="percentage2"></b>
+                            </h1>
+                        </div>
+                        <div class="col-6">
+                                <label class="form-label" for="monthly-payment">Ежемесячный платёж</label>
+                            <h1><b id="monthly-payment"></b>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row w-50 mx-auto">
+    <div class="col-md-12 mx-auto d-inline-flex px-5 pt-5 pb-0 mt-5 rounded bg-secondary bg-gradient mb-5">
+        <div class="row">
+            <h1 class="col-md-12">График платежей</h1>
+            <div class="col-md-12 overflow-auto rounded border border-info bg-light" id="chartHolder" style="height: 20rem; color: black">
+                <div class="col-md-12" style="width: 50vmin">
+                </div>
+            </div>
+            <h6 class="col-md-4 mx-auto py-3">
+                <div class="d-flex align-middle p-0">
+                    <i class="bi-circle-fill my-auto" style="font-size: 1rem; color: whitesmoke;"></i>
+                    <p class="fs-6 my-auto ms-2">Платеж по основному долгу</p>
+                </div>
+            </h6>
+            <h6 class="col-md-8 mx-auto py-3">
+                <div class="d-flex align-middle p-0">
+                    <i class="bi-circle-fill my-auto" style="font-size: 1rem; color: gold;"></i>
+                    <p class="fs-6 my-auto ms-2">Платеж по процентам, начисленным на остаток основного долга</p>
+                </div>
+            </h6>
+        </div>
+    </div>
+</div>
+<script src="calc.js"></script>
+</body>
