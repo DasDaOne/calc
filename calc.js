@@ -1,3 +1,5 @@
+// ddo
+
 const amount = document.getElementById("amount")
 const time = document.getElementById("time")
 const percentage = document.getElementById("percentage")
